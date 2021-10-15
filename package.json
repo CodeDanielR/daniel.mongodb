@@ -1,6 +1,6 @@
 {
   "name": "daniel.mongodb",
-  "version": "1.0.0c",
+  "version": "1.0.0d",
   "description": "A NPM Package using Mongodb.",
   "main": "src/Main.ts",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "keywords": ["mongodb", "mongoose", "typescript", "daniel"],
   "author": "CodeDanielR",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CodeDanielR/daniel.mongodb/issues"
   },
