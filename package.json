@@ -1,16 +1,23 @@
 {
   "name": "daniel.mongodb",
-  "version": "1.0.0d",
+  "version": "1.0.1",
   "description": "A NPM Package using Mongodb.",
-  "main": "src/Main.ts",
+  "main": "dist/Main.js",
+  "types": "dist/Main.d.ts",
   "scripts": {
-    "test": "ts-node-dev src/test/test.ts --respawn"
+    "test": "ts-node-dev test.ts --respawn",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CodeDanielR/daniel.mongodb.git"
   },
-  "keywords": ["mongodb", "mongoose", "typescript", "daniel"],
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "typescript",
+    "daniel"
+  ],
   "author": "CodeDanielR",
   "license": "MIT",
   "bugs": {
@@ -18,11 +25,13 @@
   },
   "homepage": "https://github.com/CodeDanielR/daniel.mongodb",
   "devDependencies": {
-    "@types/node": "^16.10.6",
     "ts-node": "^10.3.0",
-    "typescript": "^4.4.4"
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4",
+    "typings": "^2.1.1"
   },
   "dependencies": {
-    "ts-node-dev": "^1.1.8"
+    "@types/mongoose": "^5.11.97",
+    "mongoose": "^6.0.11"
   }
 }
