@@ -5,8 +5,8 @@ import ConstructorConfig from "./Interfaces/ConstructorConfig";
 
 class DanielMongoDB extends EventEmmiter {
     
-    private name: string;
-    private url: string;
+    public name: string;
+    public url: string;
     private mongoConfig: ConstructorConfig;
     private firstConnect: boolean;
     private connected: boolean;
@@ -23,7 +23,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     connect() {
-        if(this.connected) return
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're already connected to ${this.name}`)
         Mongoose.connect(this.url, this.mongoConfig)
         this.db = Mongoose.connection;
         if (this.firstConnect) this._eventHandling()
@@ -38,16 +38,18 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     disconnect() {
-        if(!this.connected) return
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         this.connected = false
         return Mongoose.disconnect()
     }
 
     get connection() {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         return Mongoose.connection
     }
 
     async set(key: string, data: any) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data = data
@@ -59,35 +61,42 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     async get(key: string) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         return obj ? obj.data : undefined
     }
 
     async remove(key: string) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         return obj ? obj.remove() : null
     }
 
     async delete(key: string) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         return obj ? obj.remove() : null
     }
 
     async getAll() {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.find({}).exec()
         return obj ? obj : []
     }
     async deleteAll() {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.find({}).exec()
         return obj ? obj.map(o => o.remove()) : []
     }
 
     async has(key: string) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         return obj ? true : false
     }
 
     async add(key: string, data: any) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data = obj.data + data
@@ -100,6 +109,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     async subtract(key: string, data: number) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data = obj.data - data as number
@@ -112,6 +122,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     async pull(key: string, data: any) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data = obj.data.filter((v: any) => v !== data)
@@ -124,6 +135,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     async push(key: string, data: any) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data.push(data)
@@ -136,6 +148,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     async includes(key: string, data: any) {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             return obj.data.includes(data)
@@ -146,10 +159,12 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     get mongoModel() {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         return this.model
     }
 
     _eventHandling() {
+        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
         this.db.on('open', () => this.emit('ready'))
         this.db.on('error', e => this.emit('error', e))
         this.db.on('disconnect', () => {
