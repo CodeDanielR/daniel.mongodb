@@ -23,7 +23,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     connect() {
-        if(!this.connected) throw new Error(`Daniel.MongoDB => You're already connected to ${this.name}`)
+        if(this.connected) throw new Error(`Daniel.MongoDB => You're already connected to ${this.name}`)
         Mongoose.connect(this.url, this.mongoConfig)
         this.db = Mongoose.connection;
         if (this.firstConnect) this._eventHandling()

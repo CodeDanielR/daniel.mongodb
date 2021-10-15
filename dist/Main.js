@@ -68,7 +68,7 @@ var DanielMongoDB = /** @class */ (function (_super) {
         return _this;
     }
     DanielMongoDB.prototype.connect = function () {
-        if (!this.connected)
+        if (this.connected)
             throw new Error("Daniel.MongoDB => You're already connected to " + this.name);
         mongoose_1.default.connect(this.url, this.mongoConfig);
         this.db = mongoose_1.default.connection;
