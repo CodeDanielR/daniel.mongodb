@@ -1,6 +1,6 @@
 {
   "name": "daniel.mongodb",
-  "version": "1.0.2c",
+  "version": "1.0.3",
   "description": "A NPM Package using Mongodb.",
   "main": "dist/Main.js",
   "types": "dist/Main.d.ts",

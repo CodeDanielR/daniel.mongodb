@@ -164,7 +164,7 @@ class DanielMongoDB extends EventEmmiter {
     }
 
     _eventHandling() {
-        if(!this.connected) throw new Error(`Daniel.MongoDB => You're not connected to ${this.name}`)
+        if(this.connected) throw new Error(`Daniel.MongoDB => You're already connected to ${this.name}`)
         this.db.on('open', () => this.emit('ready'))
         this.db.on('error', e => this.emit('error', e))
         this.db.on('disconnect', () => {
