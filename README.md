@@ -1,3 +1,3 @@
 ### Welcome to daniel.mongodb!
 
-This page will update soon.
+Full documentation here: https://codedanielr.github.io/mongodb
