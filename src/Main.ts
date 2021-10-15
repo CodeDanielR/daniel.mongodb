@@ -175,4 +175,4 @@ class DanielMongoDB extends EventEmmiter {
 }
 
 export default DanielMongoDB
-export { ConstructorConfig, ConstructorProps }
+export { ConstructorConfig, ConstructorProps, DanielMongoDB }

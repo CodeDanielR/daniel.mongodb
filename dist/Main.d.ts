@@ -32,4 +32,4 @@ declare class DanielMongoDB extends EventEmmiter {
     _eventHandling(): void;
 }
 export default DanielMongoDB;
-export { ConstructorConfig, ConstructorProps };
+export { ConstructorConfig, ConstructorProps, DanielMongoDB };
