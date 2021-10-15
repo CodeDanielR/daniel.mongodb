@@ -7,9 +7,9 @@ class DanielMongoDB extends EventEmmiter {
     
     public name: string;
     public url: string;
-    private mongoConfig: ConstructorConfig;
-    private firstConnect: boolean;
-    private connected: boolean;
+    public mongoConfig: ConstructorConfig;
+    public firstConnect: boolean;
+    public connected: boolean;
     public model: Mongoose.Model<any>;
     public schema: Mongoose.Schema;
     public db: Mongoose.Connection;
@@ -169,7 +169,6 @@ class DanielMongoDB extends EventEmmiter {
         this.db.on('error', e => this.emit('error', e))
         this.db.on('disconnect', () => {
             this.emit('disconnect')
-            if (!this.connected) Mongoose.connect(this.url, this.mongoConfig ? this.mongoConfig : { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
         })
     }
 
