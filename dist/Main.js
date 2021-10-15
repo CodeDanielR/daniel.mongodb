@@ -347,8 +347,8 @@ var DanielMongoDB = /** @class */ (function (_super) {
     });
     DanielMongoDB.prototype._eventHandling = function () {
         var _this = this;
-        if (!this.connected)
-            throw new Error("Daniel.MongoDB => You're not connected to " + this.name);
+        if (this.connected)
+            throw new Error("Daniel.MongoDB => You're already connected to " + this.name);
         this.db.on('open', function () { return _this.emit('ready'); });
         this.db.on('error', function (e) { return _this.emit('error', e); });
         this.db.on('disconnect', function () {
