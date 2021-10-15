@@ -352,8 +352,6 @@ var DanielMongoDB = /** @class */ (function (_super) {
         this.db.on('error', function (e) { return _this.emit('error', e); });
         this.db.on('disconnect', function () {
             _this.emit('disconnect');
-            if (!_this.connected)
-                mongoose_1.default.connect(_this.url, _this.mongoConfig ? _this.mongoConfig : { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
         });
     };
     return DanielMongoDB;

@@ -2,12 +2,13 @@
 import Mongoose from "mongoose";
 import EventEmmiter from "events";
 import ConstructorProps from "./Interfaces/ConstructorProps";
+import ConstructorConfig from "./Interfaces/ConstructorConfig";
 declare class DanielMongoDB extends EventEmmiter {
     name: string;
     url: string;
-    private mongoConfig;
-    private firstConnect;
-    private connected;
+    mongoConfig: ConstructorConfig;
+    firstConnect: boolean;
+    connected: boolean;
     model: Mongoose.Model<any>;
     schema: Mongoose.Schema;
     db: Mongoose.Connection;
