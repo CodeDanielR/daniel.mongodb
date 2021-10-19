@@ -306,7 +306,7 @@ var DanielMongoDB = /** @class */ (function (_super) {
                             return [2 /*return*/, obj.save()];
                         }
                         else {
-                            newObj = this.set(key, [{ ID: key, data: data }]);
+                            newObj = this.set(key, [data]);
                             return [2 /*return*/, newObj];
                         }
                         return [2 /*return*/];
