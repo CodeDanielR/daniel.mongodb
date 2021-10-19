@@ -292,7 +292,7 @@ var DanielMongoDB = /** @class */ (function (_super) {
     };
     DanielMongoDB.prototype.push = function (key, data) {
         return __awaiter(this, void 0, void 0, function () {
-            var obj, newObj;
+            var obj, newObj, newObj;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -303,7 +303,8 @@ var DanielMongoDB = /** @class */ (function (_super) {
                         obj = _a.sent();
                         if (obj) {
                             obj.data.push(data);
-                            return [2 /*return*/, obj.save()];
+                            newObj = this.set(key, obj.data);
+                            return [2 /*return*/, newObj];
                         }
                         else {
                             newObj = this.set(key, [data]);

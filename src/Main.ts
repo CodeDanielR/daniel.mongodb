@@ -139,7 +139,8 @@ class DanielMongoDB extends EventEmmiter {
         const obj = await this.model.findOne({ ID: key })
         if (obj) {
             obj.data.push(data)
-            return obj.save()
+            const newObj = this.set(key, obj.data)
+            return newObj
         }
         else {
             const newObj = this.set(key, [data])
