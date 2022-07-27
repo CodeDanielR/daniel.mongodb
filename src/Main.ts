@@ -2,7 +2,7 @@ import Mongoose from "mongoose"
 import EventEmmiter from "events"
 import ConstructorProps from "./Interfaces/ConstructorProps"
 import ConstructorConfig from "./Interfaces/ConstructorConfig";
-
+w
 class DanielMongoDB extends EventEmmiter {
     
     public name: string;
